@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
@@ -29,11 +31,11 @@ public class ImageAdapter extends BaseAdapter  implements StickyListHeadersAdapt
     }
 
     public int getCount() {
-        return mCountries.length;
+        return mThumbIds.length;
     }
 
     public Object getItem(int position) {
-        return mCountries[position];
+        return mThumbIds[position];
     }
 
     public long getItemId(int position) {
@@ -42,20 +44,20 @@ public class ImageAdapter extends BaseAdapter  implements StickyListHeadersAdapt
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
-       /* ImageView imageView;
+        ImageView imageView;
         if (convertView == null) {
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(mWidth, mHeight));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-           // imageView.setPadding(8, 8, 8, 8);
+           imageView.setPadding(8, 8, 8, 8);
         } else {
             imageView = (ImageView) convertView;
         }
 
         imageView.setImageResource(mThumbIds[position]);
-        return imageView;*/
-        ViewHolder holder;
+        return imageView;
+     /*   ViewHolder holder;
 
         if (convertView == null) {
             holder = new ViewHolder();
@@ -68,7 +70,7 @@ public class ImageAdapter extends BaseAdapter  implements StickyListHeadersAdapt
 
         holder.text.setText(mCountries[position]);
 
-        return convertView;
+        return convertView;*/
     }
 
     @Override
@@ -77,13 +79,13 @@ public class ImageAdapter extends BaseAdapter  implements StickyListHeadersAdapt
         if (convertView == null) {
             holder = new HeaderViewHolder();
             convertView = inflater.inflate(R.layout.header, parent, false);
-            holder.text = (TextView) convertView.findViewById(R.id.text);
+            holder.text = (TextView) convertView.findViewById(R.id.text1);
             convertView.setTag(holder);
         } else {
             holder = (HeaderViewHolder) convertView.getTag();
         }
         //set header text as first char in name
-        String headerText = "" + mCountries[position].subSequence(0, 1).charAt(0);
+        String headerText = "" + mThumbIds[position];
         holder.text.setText(headerText);
         return convertView;
     }
@@ -91,7 +93,7 @@ public class ImageAdapter extends BaseAdapter  implements StickyListHeadersAdapt
     @Override
     public long getHeaderId(int position) {
         //return the first character of the country as ID because this is what headers are based upon
-        return mCountries[position].subSequence(0, 1).charAt(0);
+        return mThumbIds[position];
     }
 
     class HeaderViewHolder {
