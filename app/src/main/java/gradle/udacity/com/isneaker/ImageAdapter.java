@@ -9,6 +9,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 /**
@@ -55,7 +57,9 @@ public class ImageAdapter extends BaseAdapter  implements StickyListHeadersAdapt
             imageView = (ImageView) convertView;
         }
 
-        imageView.setImageResource(mThumbIds[position]);
+        //imageView.setImageResource(mThumbIds[position]);
+
+        Picasso.with(mContext).load(mThumbIds[position]).into(imageView);
         return imageView;
      /*   ViewHolder holder;
 
