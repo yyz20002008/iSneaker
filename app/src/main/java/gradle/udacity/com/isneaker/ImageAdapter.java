@@ -1,6 +1,8 @@
 package gradle.udacity.com.isneaker;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.provider.UserDictionary;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import gradle.udacity.com.isneaker.data.SneakerDB;
+import gradle.udacity.com.isneaker.data.SneakerProvider;
 import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
 
 /**
@@ -43,6 +47,30 @@ public class ImageAdapter extends BaseAdapter  implements StickyListHeadersAdapt
     public long getItemId(int position) {
         return 0;
     }
+
+    public void insertSneaker(int image_id){
+
+        // Defines an object to contain the new values to insert
+        ContentValues mNewValues = new ContentValues();
+
+        /*
+         * Sets the values of each column and inserts the word. The arguments to the "put"
+         * method are "column name" and "value"
+         */
+
+        mNewValues.put(SneakerProvider.Sneakers.model, "20161005");
+        mNewValues.put(SneakerDB.SNEAKERS.name, "Air_Jordan_1");
+        mNewValues.put(SneakerDB.SNEAKERS.release_date, "Oct,15 2016");
+        mNewValues.put(SneakerDB.SNEAKERS.release_time, "10:00AM");
+
+        mNewUri = getContentResolver().insert(
+                SneakerDB.SNEAKERS.CONTENT_URI,   // the user dictionary content URI
+                mNewValues                          // the values to insert
+        );
+
+
+    }
+
 
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
