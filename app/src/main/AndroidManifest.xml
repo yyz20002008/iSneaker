@@ -26,13 +26,11 @@
         </activity>
 
 
-
-
-
+        <provider
+            android:name=".data.generated.SneakerProvider"
+            android:authorities="gradle.udacity.com.isneaker.data.sneakerprovider"
+            android:exported="false" />
     </application>
-    <provider
-        android:name=".data.SneakerProvider"
-        android:authorities="gradle.udacity.com.isneaker.data.sneakerprovider"
-        android:exported="false" />
+
 
 </manifest>
