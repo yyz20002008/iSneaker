@@ -33,6 +33,7 @@ public class MainActivityFragment extends Fragment {
 
     public void insertSneaker(int image_id){
 
+
         // Defines a new Uri object that receives the result of the insertion
         Uri mNewUri;
 
@@ -76,7 +77,14 @@ public class MainActivityFragment extends Fragment {
                     // Define the columns to retrieve
                     String[] projectionFields = new String[] {  SneakerDBColumns._ID,
                             SneakerDBColumns.IMAGE_URL,};
-
+                    //2.Retrieve Data
+                    mCursor=mContext.getContentResolver().query(
+                            SneakerProvider.Sneakers.CONTENT_URI,
+                            projectionFields, // projection fields
+                            null, // the selection criteria
+                            null, // the selection args
+                            SneakerDBColumns.RELEASE_DATE // the sort order
+                    );
                     // Construct the loader
                     CursorLoader cursorLoader = new CursorLoader(getActivity(),
                             SneakerProvider.Sneakers.CONTENT_URI, // URI
@@ -94,7 +102,7 @@ public class MainActivityFragment extends Fragment {
                 @Override
                 public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
                     // The swapCursor() method assigns the new Cursor to the adapter
-                    //mImages.swapCursor(cursor);
+                    mImages.swapCursor(cursor);
                 }
 
                 // This method is triggered when the loader is being reset
@@ -103,7 +111,7 @@ public class MainActivityFragment extends Fragment {
                 @Override
                 public void onLoaderReset(Loader<Cursor> loader) {
                     // Clear the Cursor we were using with another call to the swapCursor()
-                    //mImages.swapCursor(null);
+                    mImages.swapCursor(null);
                 }
             };
 

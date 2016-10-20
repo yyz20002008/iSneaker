@@ -71,10 +71,10 @@ public class ImageAdapter extends CursorAdapter implements StickyListHeadersAdap
         }
         // Extract properties from cursor
 
-        int priority = cursor.getInt(cursor.getColumnIndexOrThrow("image_url"));
+        int image = cursor.getInt(cursor.getColumnIndexOrThrow("image_url"));
         //add image to view
         // Populate fields with extracted properties
-        Picasso.with(mContext).load(priority).into(imageView);//Picasso API
+        Picasso.with(mContext).load(image).into(imageView);//Picasso API
 
 
 
