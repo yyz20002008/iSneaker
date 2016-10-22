@@ -68,7 +68,7 @@ public class MainActivityFragment extends Fragment {
         );
 
         // Define the columns to retrieve
-        String[] projectionFields = new String[] {
+        String[] projectionFields = new String[] {SneakerDBColumns._ID,
                 SneakerDBColumns.IMAGE_URL,};
         //2.Retrieve Data
         mCursor=getActivity().getContentResolver().query(
@@ -86,12 +86,13 @@ public class MainActivityFragment extends Fragment {
                 @Override
                 public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 
-
-
+                    // Define the columns to retrieve
+                    String[] projectionFields = new String[] {SneakerDBColumns._ID,
+                            SneakerDBColumns.IMAGE_URL,};
                     // Construct the loader
                     CursorLoader cursorLoader = new CursorLoader(mContext,
                             SneakerProvider.Sneakers.CONTENT_URI, // URI
-                            null, // projection fields
+                            projectionFields, // projection fields
                             null, // the selection criteria
                             null, // the selection args
                             SneakerDBColumns.RELEASE_DATE // the sort order
@@ -131,6 +132,7 @@ public class MainActivityFragment extends Fragment {
         insert();
 
         StickyListHeadersListView stickyList = (StickyListHeadersListView) rootView.findViewById(R.id.list);
+
         mImages=new ImageAdapter(getActivity(),mCursor);
 
         stickyList.setAdapter(mImages);
