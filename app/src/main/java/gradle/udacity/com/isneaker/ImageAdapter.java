@@ -18,20 +18,20 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersAdapter;
  * Created by James Yang on 10/7/2016.
  */
 public class ImageAdapter extends CursorAdapter implements StickyListHeadersAdapter {
-    private Context mContext;
+
     private final int mHeight;
     private final int mWidth;
     private LayoutInflater inflater;
-    //private String[] mCountries;
-
+    private Context mContext;
+    private Cursor mCursor;
     public ImageAdapter(Context c, Cursor cursor) {
         super(c, cursor, 0);
-
-        mContext = c;
-        mHeight= Math.round(mContext.getResources().getDimension(R.dimen.poster_height));
-        mWidth = Math.round(mContext.getResources().getDimension(R.dimen.poster_width));
+        mContext=c;
+        mCursor=cursor;
+        mHeight= Math.round(c.getResources().getDimension(R.dimen.poster_height));
+        mWidth = Math.round(c.getResources().getDimension(R.dimen.poster_width));
         inflater = LayoutInflater.from(c);
-       // mCountries = c.getResources().getStringArray(R.array.countries);
+
     }
 
     public int getCount() {
@@ -71,7 +71,7 @@ public class ImageAdapter extends CursorAdapter implements StickyListHeadersAdap
         }
         // Extract properties from cursor
 
-        int image = cursor.getInt(cursor.getColumnIndexOrThrow("image_url"));
+        int image = mCursor.getInt(cursor.getColumnIndexOrThrow("image_url"));
         //add image to view
         // Populate fields with extracted properties
         Picasso.with(mContext).load(image).into(imageView);//Picasso API
@@ -80,58 +80,58 @@ public class ImageAdapter extends CursorAdapter implements StickyListHeadersAdap
 
     }
     // create a new ImageView for each item referenced by the Adapter
-    public View getView(int position, View convertView, ViewGroup parent) {
-        ImageView imageView;
-        if (convertView == null) {
-            // if it's not recycled, initialize some attributes
-            imageView = new ImageView(mContext);
-            imageView.setLayoutParams(new GridView.LayoutParams(mWidth, mHeight));
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-           imageView.setPadding(8, 8, 8, 8);
-        } else {
-            imageView = (ImageView) convertView;
-        }
-
-        //imageView.setImageResource(mThumbIds[position]); //regular way to retrieve image
-
-        //2.Retrieve Data
-      /*  // A "projection" defines the columns that will be returned for each row
-        String[] mProjection =
-                {
-                        SneakerDBColumns.MODEL,
-                        SneakerDBColumns.NAME,
-                        SneakerDBColumns.RELEASE_DATE,
-                        SneakerDBColumns.RELEASE_TIME,
-                        SneakerDBColumns.IMAGE_URL,
-                        SneakerDBColumns.ONLINE_STORE_LINK
-                };
-
-        // Defines a string to contain the selection clause
-                String mSelectionClause = null;
-
-        // Initializes an array to contain selection arguments
-                String[] mSelectionArgs = {""};
-
-        // Does a query against the table and returns a Cursor object
-                mCursor = mContext.getContentResolver().query(
-                        SneakerProvider.Sneakers.CONTENT_URI,
-                        mProjection,                       // The columns to return for each row
-                        mSelectionClause,                  // Either null, or the word the user entered
-                        mSelectionArgs,                    // Either empty, or the string the user entered
-                        SneakerDBColumns.RELEASE_DATE
-                );
-
-
-
-        // Determine the column index of the column named "word"
-        int index = mCursor.getColumnIndex(SneakerDBColumns.IMAGE_URL);*/
-
-        //Finally, add image to view
-        Picasso.with(mContext).load(mThumbIds[position]).into(imageView);//Picasso API
-        return imageView;
-
-
-    }
+//    public View getView(int position, View convertView, ViewGroup parent) {
+//        ImageView imageView;
+//        if (convertView == null) {
+//            // if it's not recycled, initialize some attributes
+//            imageView = new ImageView(mContext);
+//            imageView.setLayoutParams(new GridView.LayoutParams(mWidth, mHeight));
+//            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+//           imageView.setPadding(8, 8, 8, 8);
+//        } else {
+//            imageView = (ImageView) convertView;
+//        }
+//
+//        //imageView.setImageResource(mThumbIds[position]); //regular way to retrieve image
+//
+//        //2.Retrieve Data
+//      /*  // A "projection" defines the columns that will be returned for each row
+//        String[] mProjection =
+//                {
+//                        SneakerDBColumns.MODEL,
+//                        SneakerDBColumns.NAME,
+//                        SneakerDBColumns.RELEASE_DATE,
+//                        SneakerDBColumns.RELEASE_TIME,
+//                        SneakerDBColumns.IMAGE_URL,
+//                        SneakerDBColumns.ONLINE_STORE_LINK
+//                };
+//
+//        // Defines a string to contain the selection clause
+//                String mSelectionClause = null;
+//
+//        // Initializes an array to contain selection arguments
+//                String[] mSelectionArgs = {""};
+//
+//        // Does a query against the table and returns a Cursor object
+//                mCursor = mContext.getContentResolver().query(
+//                        SneakerProvider.Sneakers.CONTENT_URI,
+//                        mProjection,                       // The columns to return for each row
+//                        mSelectionClause,                  // Either null, or the word the user entered
+//                        mSelectionArgs,                    // Either empty, or the string the user entered
+//                        SneakerDBColumns.RELEASE_DATE
+//                );
+//
+//
+//
+//        // Determine the column index of the column named "word"
+//        int index = mCursor.getColumnIndex(SneakerDBColumns.IMAGE_URL);*/
+//
+//        //Finally, add image to view
+//        Picasso.with(mContext).load(mThumbIds[position]).into(imageView);//Picasso API
+//        return imageView;
+//
+//
+//    }
 
     @Override
     public View getHeaderView(int position, View convertView, ViewGroup parent) {

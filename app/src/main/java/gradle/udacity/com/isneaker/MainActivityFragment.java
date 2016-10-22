@@ -25,31 +25,41 @@ import se.emilsjolander.stickylistheaders.StickyListHeadersListView;
  */
 public class MainActivityFragment extends Fragment {
 
+    // Defines the id of the loader for later reference
+    public static final int CONTACT_LOADER_ID = 78; // From docs: A unique identifier for this loader. Can be whatever you want.
     private ImageAdapter mImages;
     private Context mContext;
     Cursor mCursor;
     public MainActivityFragment() {
     }
 
-    public void insertSneaker(int image_id){
 
+    // references to our images
+    private Integer[] mThumbIds = {
+            R.drawable.aj1sb,
+            R.drawable.aj12ovo, R.drawable.aj12wool,
+            R.drawable.aj31orange, R.drawable.aj4premium
+    };
 
+    private void insert(){
         // Defines a new Uri object that receives the result of the insertion
         Uri mNewUri;
 
         // Defines an object to contain the new values to insert
         ContentValues mNewValues = new ContentValues();
 
-        /*
-         * Sets the values of each column and inserts the word. The arguments to the "put"
-         * method are "column name" and "value"
-         */
+                    /*
+                     * Sets the values of each column and inserts the word. The arguments to the "put"
+                     * method are "column name" and "value"
+                     */
+
+        //1. Insert Data
 
         mNewValues.put(SneakerDBColumns.MODEL, "20161005");
         mNewValues.put(SneakerDBColumns.NAME, "Air_Jordan_1");
         mNewValues.put(SneakerDBColumns.RELEASE_DATE, "Oct,15 2016");
         mNewValues.put(SneakerDBColumns.RELEASE_TIME, "10:00AM");
-        mNewValues.put(SneakerDBColumns.IMAGE_URL, image_id);
+        mNewValues.put(SneakerDBColumns.IMAGE_URL, mThumbIds[0]);
         mNewValues.put(SneakerDBColumns.ONLINE_STORE_LINK, "www.NIKE.com");
 
         mNewUri = mContext.getContentResolver().insert(
@@ -57,14 +67,18 @@ public class MainActivityFragment extends Fragment {
                 mNewValues                          // the values to insert
         );
 
-
+        // Define the columns to retrieve
+        String[] projectionFields = new String[] {
+                SneakerDBColumns.IMAGE_URL,};
+        //2.Retrieve Data
+        mCursor=getActivity().getContentResolver().query(
+                SneakerProvider.Sneakers.CONTENT_URI,
+                projectionFields, // projection fields
+                null, // the selection criteria
+                null, // the selection args
+                SneakerDBColumns.RELEASE_DATE // the sort order
+        );
     }
-    // references to our images
-    private Integer[] mThumbIds = {
-            R.drawable.aj1sb,
-            R.drawable.aj12ovo, R.drawable.aj12wool,
-            R.drawable.aj31orange, R.drawable.aj4premium
-    };
     // Defines the asynchronous callback for the contacts data loader
     private LoaderManager.LoaderCallbacks<Cursor> contactsLoader =
             new LoaderManager.LoaderCallbacks<Cursor>() {
@@ -72,23 +86,12 @@ public class MainActivityFragment extends Fragment {
                 @Override
                 public Loader<Cursor> onCreateLoader(int id, Bundle args) {
 
-                    //1. Insert Data
-                    insertSneaker(mThumbIds[0]);
-                    // Define the columns to retrieve
-                    String[] projectionFields = new String[] {  SneakerDBColumns._ID,
-                            SneakerDBColumns.IMAGE_URL,};
-                    //2.Retrieve Data
-                    mCursor=mContext.getContentResolver().query(
-                            SneakerProvider.Sneakers.CONTENT_URI,
-                            projectionFields, // projection fields
-                            null, // the selection criteria
-                            null, // the selection args
-                            SneakerDBColumns.RELEASE_DATE // the sort order
-                    );
+
+
                     // Construct the loader
-                    CursorLoader cursorLoader = new CursorLoader(getActivity(),
+                    CursorLoader cursorLoader = new CursorLoader(mContext,
                             SneakerProvider.Sneakers.CONTENT_URI, // URI
-                            projectionFields, // projection fields
+                            null, // projection fields
                             null, // the selection criteria
                             null, // the selection args
                             SneakerDBColumns.RELEASE_DATE // the sort order
@@ -115,8 +118,7 @@ public class MainActivityFragment extends Fragment {
                 }
             };
 
-    // Defines the id of the loader for later reference
-    public static final int CONTACT_LOADER_ID = 78; // From docs: A unique identifier for this loader. Can be whatever you want.
+
 
 
     @Override
@@ -125,13 +127,14 @@ public class MainActivityFragment extends Fragment {
         View rootView=inflater.inflate(R.layout.fragment_main, container, false);
         // Initialize the loader with a special ID and the defined callbacks from above
 
-
-        mImages=new ImageAdapter(mContext,mCursor);
+        mContext=getActivity();
+        insert();
 
         StickyListHeadersListView stickyList = (StickyListHeadersListView) rootView.findViewById(R.id.list);
+        mImages=new ImageAdapter(getActivity(),mCursor);
 
         stickyList.setAdapter(mImages);
-        getLoaderManager().initLoader(CONTACT_LOADER_ID, new Bundle(), contactsLoader);
+
         stickyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
@@ -140,5 +143,12 @@ public class MainActivityFragment extends Fragment {
             }
         });
         return rootView;
+    }
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+
+        super.onActivityCreated(savedInstanceState);
+
+        getLoaderManager().initLoader(CONTACT_LOADER_ID, new Bundle(), contactsLoader);
     }
 }
