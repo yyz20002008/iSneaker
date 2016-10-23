@@ -24,26 +24,13 @@ public class ImageAdapter extends CursorAdapter implements StickyListHeadersAdap
     private LayoutInflater inflater;
     private Context mContext;
     private Cursor mCursor;
-    public ImageAdapter(Context c, Cursor cursor) {
-        super(c, cursor, 0);
+    public ImageAdapter(Context c, Cursor cursor,int flags) {
+        super(c, cursor, flags);
         mContext=c;
         mCursor=cursor;
         mHeight= Math.round(c.getResources().getDimension(R.dimen.poster_height));
         mWidth = Math.round(c.getResources().getDimension(R.dimen.poster_width));
         inflater = LayoutInflater.from(c);
-
-    }
-
-    public int getCount() {
-        return mThumbIds.length;
-    }
-
-    public Object getItem(int position) {
-        return mThumbIds[position];
-    }
-
-    public long getItemId(int position) {
-        return 0;
     }
 
 

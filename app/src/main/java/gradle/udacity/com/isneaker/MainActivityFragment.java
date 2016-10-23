@@ -48,10 +48,10 @@ public class MainActivityFragment extends Fragment {
         // Defines an object to contain the new values to insert
         ContentValues mNewValues = new ContentValues();
 
-                    /*
-                     * Sets the values of each column and inserts the word. The arguments to the "put"
-                     * method are "column name" and "value"
-                     */
+        /*
+         * Sets the values of each column and inserts the word. The arguments to the "put"
+         * method are "column name" and "value"
+         */
 
         //1. Insert Data
 
@@ -133,7 +133,7 @@ public class MainActivityFragment extends Fragment {
 
         StickyListHeadersListView stickyList = (StickyListHeadersListView) rootView.findViewById(R.id.list);
 
-        mImages=new ImageAdapter(getActivity(),mCursor);
+        mImages=new ImageAdapter(getActivity(),mCursor,0);
 
         stickyList.setAdapter(mImages);
 
