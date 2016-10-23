@@ -54,9 +54,8 @@ public class ImageAdapter extends CursorAdapter implements StickyListHeadersAdap
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setPadding(8, 8, 8, 8);
         } else {
-            imageView = (ImageView) convertView;
+            imageView = (ImageView) convertView.findViewById(R.id.imageView1);
         }
-        // Extract properties from cursor
 
         int image = mCursor.getInt(cursor.getColumnIndexOrThrow("image_url"));
         //add image to view

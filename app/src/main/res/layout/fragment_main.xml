@@ -9,20 +9,27 @@
     tools:context="gradle.udacity.com.isneaker.MainActivityFragment"
     tools:showIn="@layout/activity_main">
 
-   <!-- <GridView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/gridview"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:columnWidth="@dimen/poster_width"
-        android:numColumns="auto_fit"
-        android:verticalSpacing="@dimen/poster_padding"
-        android:horizontalSpacing="@dimen/poster_padding"
-        android:stretchMode="columnWidth"
-        android:gravity="center"
+        <se.emilsjolander.stickylistheaders.StickyListHeadersListView
+            android:id="@+id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-        />-->
-    <se.emilsjolander.stickylistheaders.StickyListHeadersListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       />
+<!--<GridView xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--android:id="@+id/gridview"-->
+        <!--android:layout_width="fill_parent"-->
+        <!--android:layout_height="fill_parent"-->
+        <!--android:columnWidth="@dimen/poster_width"-->
+        <!--android:numColumns="auto_fit"-->
+        <!--android:verticalSpacing="@dimen/poster_padding"-->
+        <!--android:horizontalSpacing="@dimen/poster_padding"-->
+        <!--android:stretchMode="columnWidth"-->
+        <!--android:gravity="center"-->
+
+       <!--/>-->
+
 </RelativeLayout>

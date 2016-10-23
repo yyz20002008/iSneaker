@@ -48,24 +48,28 @@ public class MainActivityFragment extends Fragment {
         // Defines an object to contain the new values to insert
         ContentValues mNewValues = new ContentValues();
 
-        /*
-         * Sets the values of each column and inserts the word. The arguments to the "put"
-         * method are "column name" and "value"
-         */
+                    /*
+                     * Sets the values of each column and inserts the word. The arguments to the "put"
+                     * method are "column name" and "value"
+                     */
 
         //1. Insert Data
+        int i=0;
+        while (i<mThumbIds.length) {
+            mNewValues.put(SneakerDBColumns.MODEL, "20161005");
+            mNewValues.put(SneakerDBColumns.NAME, "Air_Jordan_1");
+            mNewValues.put(SneakerDBColumns.RELEASE_DATE, "Oct,15 2016");
+            mNewValues.put(SneakerDBColumns.RELEASE_TIME, "10:00AM");
+            mNewValues.put(SneakerDBColumns.IMAGE_URL, mThumbIds[i]);
+            mNewValues.put(SneakerDBColumns.ONLINE_STORE_LINK, "www.NIKE.com");
 
-        mNewValues.put(SneakerDBColumns.MODEL, "20161005");
-        mNewValues.put(SneakerDBColumns.NAME, "Air_Jordan_1");
-        mNewValues.put(SneakerDBColumns.RELEASE_DATE, "Oct,15 2016");
-        mNewValues.put(SneakerDBColumns.RELEASE_TIME, "10:00AM");
-        mNewValues.put(SneakerDBColumns.IMAGE_URL, mThumbIds[0]);
-        mNewValues.put(SneakerDBColumns.ONLINE_STORE_LINK, "www.NIKE.com");
+            mNewUri = mContext.getContentResolver().insert(
+                    SneakerProvider.Sneakers.CONTENT_URI,   // content URI
+                    mNewValues                          // the values to insert
+            );
 
-        mNewUri = mContext.getContentResolver().insert(
-                SneakerProvider.Sneakers.CONTENT_URI,   // content URI
-                mNewValues                          // the values to insert
-        );
+            i++;
+        }
 
         // Define the columns to retrieve
         String[] projectionFields = new String[] {SneakerDBColumns._ID,
