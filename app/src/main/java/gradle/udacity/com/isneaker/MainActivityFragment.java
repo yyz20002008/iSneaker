@@ -14,9 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.Toast;
-
-import com.tonicartos.widget.stickygridheaders.StickyGridHeadersGridView;
 
 import gradle.udacity.com.isneaker.data.SneakerDBColumns;
 import gradle.udacity.com.isneaker.data.SneakerProvider;
@@ -142,7 +141,7 @@ public class MainActivityFragment extends Fragment {
 
 
 
-    private StickyGridHeadersGridView mGridView;
+    private GridView mGridView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -156,7 +155,7 @@ public class MainActivityFragment extends Fragment {
 
 
         mImages=new ImageAdapter(getActivity(),mCursor,0);
-        mGridView = (StickyGridHeadersGridView)rootView.findViewById(R.id.asset_grid);
+        mGridView = (GridView)rootView.findViewById(R.id.asset_grid);
         mGridView.setAdapter(mImages);
 
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
