@@ -54,38 +54,33 @@ public class MainActivityFragment extends Fragment {
                      */
 
         //1. Insert Data
-        int i=0;
-        while (i<3) {
-            mNewValues.put(SneakerDBColumns.MODEL, "AJ"+i);
-            mNewValues.put(SneakerDBColumns.NAME, "Air_Jordan_1");
-            mNewValues.put(SneakerDBColumns.RELEASE_DATE, "Oct,15 2016");
-            mNewValues.put(SneakerDBColumns.RELEASE_TIME, "10:00AM");
-            mNewValues.put(SneakerDBColumns.IMAGE_URL, mThumbIds[i]);
-            mNewValues.put(SneakerDBColumns.ONLINE_STORE_LINK, "www.NIKE.com");
 
-            mNewUri = mContext.getContentResolver().insert(
-                    SneakerProvider.Sneakers.CONTENT_URI,   // content URI
-                    mNewValues                          // the values to insert
-            );
+        mNewValues.put(SneakerDBColumns.MODEL, "888888-1");
+        mNewValues.put(SneakerDBColumns.NAME, "Air_Jordan_1");
+        mNewValues.put(SneakerDBColumns.RELEASE_DATE, "Oct,15 2016");
+        mNewValues.put(SneakerDBColumns.RELEASE_TIME, "10:00AM");
+        mNewValues.put(SneakerDBColumns.IMAGE_URL, mThumbIds[0]);
+        mNewValues.put(SneakerDBColumns.ONLINE_STORE_LINK, "www.NIKE.com");
 
-            i++;
-        }
+        mNewUri = mContext.getContentResolver().insert(
+                SneakerProvider.Sneakers.CONTENT_URI,   // content URI
+                mNewValues                          // the values to insert
+        );
 
-        while (i<mThumbIds.length) {
-            mNewValues.put(SneakerDBColumns.MODEL, "AJ"+i);
-            mNewValues.put(SneakerDBColumns.NAME, "Air_Jordan_1");
-            mNewValues.put(SneakerDBColumns.RELEASE_DATE, "Oct,23 2016");
-            mNewValues.put(SneakerDBColumns.RELEASE_TIME, "10:00AM");
-            mNewValues.put(SneakerDBColumns.IMAGE_URL, mThumbIds[i]);
-            mNewValues.put(SneakerDBColumns.ONLINE_STORE_LINK, "www.NIKE.com");
 
-            mNewUri = mContext.getContentResolver().insert(
-                    SneakerProvider.Sneakers.CONTENT_URI,   // content URI
-                    mNewValues                          // the values to insert
-            );
+        mNewValues = new ContentValues();
+        mNewValues.put(SneakerDBColumns.MODEL,"888888-2");
+        mNewValues.put(SneakerDBColumns.NAME, "Air_Jordan_12_OVO");
+        mNewValues.put(SneakerDBColumns.RELEASE_DATE, "Oct,23 2016");
+        mNewValues.put(SneakerDBColumns.RELEASE_TIME, "10:00AM");
+        mNewValues.put(SneakerDBColumns.IMAGE_URL, mThumbIds[1]);
+        mNewValues.put(SneakerDBColumns.ONLINE_STORE_LINK, "www.NIKE.com");
 
-            i++;
-        }
+        mNewUri = mContext.getContentResolver().insert(
+                SneakerProvider.Sneakers.CONTENT_URI,   // content URI
+                mNewValues                          // the values to insert
+        );
+
         // Define the columns to retrieve
         String[] projectionFields = new String[] {SneakerDBColumns._ID,
                 SneakerDBColumns.IMAGE_URL,SneakerDBColumns.RELEASE_DATE};

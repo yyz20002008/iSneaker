@@ -64,7 +64,50 @@ public class ImageAdapter extends CursorAdapter implements StickyGridHeadersSimp
 
 
     }
-    // create a new ImageView for each item referenced by the Adapter
+
+
+    @Override
+    public View getHeaderView(int position, View convertView, ViewGroup parent) {
+        mCursor.moveToPosition(position);
+        HeaderViewHolder holder;
+        if (convertView == null) {
+            holder = new HeaderViewHolder();
+            convertView = inflater.inflate(R.layout.header, parent, false);
+            holder.text = (TextView) convertView.findViewById(R.id.text1);
+            convertView.setTag(holder);
+        } else {
+            holder = (HeaderViewHolder) convertView.getTag();
+        }
+        //set header text as first char in name
+        String headerText = "" +mCursor.getString(mCursor.getColumnIndexOrThrow("release_date"));
+        holder.text.setText(headerText);
+        return convertView;
+    }
+
+    @Override
+    public long getHeaderId(int position) {
+        //return the first character of the country as ID because this is what headers are based upon
+        mCursor.moveToPosition(position);
+        return mCursor.getInt(mCursor.getColumnIndexOrThrow("release_date"));
+    }
+
+    class HeaderViewHolder {
+        TextView text;
+    }
+
+    class ViewHolder {
+        TextView text;
+    }
+    // references to our images
+    private Integer[] mThumbIds = {
+            R.drawable.aj1sb,
+            R.drawable.aj12ovo, R.drawable.aj12wool,
+            R.drawable.aj31orange, R.drawable.aj4premium
+    };
+}
+
+
+// create a new ImageView for each item referenced by the Adapter
 //    public View getView(int position, View convertView, ViewGroup parent) {
 //        ImageView imageView;
 //        if (convertView == null) {
@@ -89,43 +132,3 @@ public class ImageAdapter extends CursorAdapter implements StickyGridHeadersSimp
 //
 //
 //    }
-
-    @Override
-    public View getHeaderView(int position, View convertView, ViewGroup parent) {
-        mCursor.moveToPosition(position);
-        HeaderViewHolder holder;
-        if (convertView == null) {
-            holder = new HeaderViewHolder();
-            convertView = inflater.inflate(R.layout.header, parent, false);
-            holder.text = (TextView) convertView.findViewById(R.id.text1);
-            convertView.setTag(holder);
-        } else {
-            holder = (HeaderViewHolder) convertView.getTag();
-        }
-        //set header text as first char in name
-        String headerText = "" +getCursor().getString(getCursor().getColumnIndexOrThrow("release_date")) ;
-        holder.text.setText(headerText);
-        return convertView;
-    }
-
-    @Override
-    public long getHeaderId(int position) {
-        //return the first character of the country as ID because this is what headers are based upon
-        mCursor.moveToPosition(position);
-        return getCursor().getInt(getCursor().getColumnIndexOrThrow("release_date"));
-    }
-
-    class HeaderViewHolder {
-        TextView text;
-    }
-
-    class ViewHolder {
-        TextView text;
-    }
-    // references to our images
-    private Integer[] mThumbIds = {
-            R.drawable.aj1sb,
-            R.drawable.aj12ovo, R.drawable.aj12wool,
-            R.drawable.aj31orange, R.drawable.aj4premium
-    };
-}
