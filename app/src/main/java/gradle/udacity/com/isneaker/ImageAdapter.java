@@ -2,6 +2,7 @@ package gradle.udacity.com.isneaker;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,6 +81,7 @@ public class ImageAdapter extends CursorAdapter implements StickyGridHeadersSimp
         }
         //set header text as first char in name
         String headerText = "" +mCursor.getString(mCursor.getColumnIndexOrThrow("release_date"));
+        DatabaseUtils.dumpCursor(mCursor);
         holder.text.setText(headerText);
         return convertView;
     }
@@ -88,7 +90,10 @@ public class ImageAdapter extends CursorAdapter implements StickyGridHeadersSimp
     public long getHeaderId(int position) {
         //return the first character of the country as ID because this is what headers are based upon
         mCursor.moveToPosition(position);
-        return mCursor.getInt(mCursor.getColumnIndexOrThrow("release_date"));
+        String headerText = "" +mCursor.getString(mCursor.getColumnIndexOrThrow("release_date"));
+        headerText=headerText.replaceAll("\\/","");
+        System.out.println(headerText);
+        return Long.parseLong(headerText);
     }
 
     class HeaderViewHolder {

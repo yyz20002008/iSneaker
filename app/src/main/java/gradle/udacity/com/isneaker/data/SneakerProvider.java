@@ -47,7 +47,7 @@ public class SneakerProvider {
                 pathSegment = 1
         )
 
-        public static Uri withId(int id) {
+        public static Uri withId(long id) {
 
             return buildUri(Path.SNEAKERS, String.valueOf(id));
         }

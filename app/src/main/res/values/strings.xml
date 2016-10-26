@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">iSneaker</string>
     <string name="action_settings">Settings</string>
+
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="label_release_date">Release Date:</string>
+    <string name="label_release_time">Release Time:</string>
+    <string name="label_release_store">Release Store:</string>
+
+    <string name="label_sneaker_name">Name:</string>
+
+    label_sneaker_name
 </resources>

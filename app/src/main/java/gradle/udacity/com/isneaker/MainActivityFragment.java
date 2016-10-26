@@ -3,6 +3,7 @@ package gradle.udacity.com.isneaker;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,9 +28,11 @@ public class MainActivityFragment extends Fragment {
 
     // Defines the id of the loader for later reference
     public static final int CONTACT_LOADER_ID = 78; // From docs: A unique identifier for this loader. Can be whatever you want.
+
     private ImageAdapter mImages;
     private Context mContext;
     Cursor mCursor;
+    Uri mNewUri;
     public MainActivityFragment() {
     }
 
@@ -43,7 +46,7 @@ public class MainActivityFragment extends Fragment {
 
     private void insert(){
         // Defines a new Uri object that receives the result of the insertion
-        Uri mNewUri;
+
 
         // Defines an object to contain the new values to insert
         ContentValues mNewValues = new ContentValues();
@@ -57,12 +60,12 @@ public class MainActivityFragment extends Fragment {
 
         mNewValues.put(SneakerDBColumns.MODEL, "888888-1");
         mNewValues.put(SneakerDBColumns.NAME, "Air_Jordan_1");
-        mNewValues.put(SneakerDBColumns.RELEASE_DATE, "Oct,15 2016");
+        mNewValues.put(SneakerDBColumns.RELEASE_DATE, "10/15/2016");
         mNewValues.put(SneakerDBColumns.RELEASE_TIME, "10:00AM");
         mNewValues.put(SneakerDBColumns.IMAGE_URL, mThumbIds[0]);
         mNewValues.put(SneakerDBColumns.ONLINE_STORE_LINK, "www.NIKE.com");
 
-        mNewUri = mContext.getContentResolver().insert(
+        mContext.getContentResolver().insert(
                 SneakerProvider.Sneakers.CONTENT_URI,   // content URI
                 mNewValues                          // the values to insert
         );
@@ -71,12 +74,12 @@ public class MainActivityFragment extends Fragment {
         mNewValues = new ContentValues();
         mNewValues.put(SneakerDBColumns.MODEL,"888888-2");
         mNewValues.put(SneakerDBColumns.NAME, "Air_Jordan_12_OVO");
-        mNewValues.put(SneakerDBColumns.RELEASE_DATE, "Oct,23 2016");
+        mNewValues.put(SneakerDBColumns.RELEASE_DATE, "10/23/2016");
         mNewValues.put(SneakerDBColumns.RELEASE_TIME, "10:00AM");
         mNewValues.put(SneakerDBColumns.IMAGE_URL, mThumbIds[1]);
         mNewValues.put(SneakerDBColumns.ONLINE_STORE_LINK, "www.NIKE.com");
 
-        mNewUri = mContext.getContentResolver().insert(
+        mContext.getContentResolver().insert(
                 SneakerProvider.Sneakers.CONTENT_URI,   // content URI
                 mNewValues                          // the values to insert
         );
@@ -92,6 +95,8 @@ public class MainActivityFragment extends Fragment {
                 null, // the selection args
                 SneakerDBColumns.RELEASE_DATE // the sort order
         );
+
+
     }
     // Defines the asynchronous callback for the contacts data loader
     private LoaderManager.LoaderCallbacks<Cursor> contactsLoader =
@@ -148,7 +153,6 @@ public class MainActivityFragment extends Fragment {
 
        // StickyListHeadersListView stickyList = (StickyListHeadersListView) rootView.findViewById(R.id.list);
 
-
         mImages=new ImageAdapter(getActivity(),mCursor,0);
         mGridView = (GridView)rootView.findViewById(R.id.asset_grid);
         mGridView.setAdapter(mImages);
@@ -158,8 +162,15 @@ public class MainActivityFragment extends Fragment {
                                     int position, long id) {
                 Toast.makeText(getActivity(), "" + position,
                         Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                Bundle args = new Bundle();
+                args.putParcelable(DetailActivityFragment.DETAIL_URI, SneakerProvider.Sneakers.CONTENT_URI);
+
+                startActivity(intent);
             }
         });
+
         return rootView;
     }
     @Override

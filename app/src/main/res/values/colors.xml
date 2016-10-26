@@ -8,4 +8,7 @@
     <color name="header_normal">#ffe74c3c</color>
     <color name="header_pressed">#ffc0392b</color>
     <color name="menu_section_header">#FFDDDDDD</color>
+
+    <color name="title_background">#FF4081</color>
+    <color name="title_color">#FF4081</color>
 </resources>
