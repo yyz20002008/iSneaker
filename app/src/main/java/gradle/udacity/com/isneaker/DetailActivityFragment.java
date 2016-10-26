@@ -1,7 +1,6 @@
 package gradle.udacity.com.isneaker;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -56,7 +55,7 @@ public class DetailActivityFragment extends Fragment {
                     if (args != null) {
                         mUri = args.getParcelable(DetailActivityFragment.DETAIL_URI);
                     }
-                    Intent intent = getActivity().getIntent();
+                    //Intent intent = getActivity().getIntent();
                     // Construct the loader
                     CursorLoader cursorLoader = new CursorLoader(getActivity(),
                             mUri, // URI
