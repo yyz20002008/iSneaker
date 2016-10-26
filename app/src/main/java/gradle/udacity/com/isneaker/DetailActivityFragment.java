@@ -58,7 +58,7 @@ public class DetailActivityFragment extends Fragment {
                     }
                     Intent intent = getActivity().getIntent();
                     // Construct the loader
-                    CursorLoader cursorLoader = new CursorLoader(mContext,
+                    CursorLoader cursorLoader = new CursorLoader(getActivity(),
                             mUri, // URI
                             projectionFields, // projection fields
                             null, // the selection criteria
@@ -99,11 +99,6 @@ public class DetailActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        Bundle arguments = getArguments();
-        if (arguments != null) {
-            mUri = arguments.getParcelable(DetailActivityFragment.DETAIL_URI);
-        }
 
         rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 
