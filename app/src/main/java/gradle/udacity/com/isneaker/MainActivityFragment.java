@@ -163,8 +163,8 @@ public class MainActivityFragment extends Fragment {
                 Toast.makeText(getActivity(), "" + mCursor.getInt(mCursor.getColumnIndexOrThrow("_id")),
                         Toast.LENGTH_SHORT).show();
 
-               // int sneakerid=mCursor.getInt(mCursor.getColumnIndexOrThrow("_id"));
-                Intent intent = new Intent(getActivity(), DetailActivity.class).setData(SneakerProvider.Sneakers.CONTENT_URI);
+                int sneakerid=mCursor.getInt(mCursor.getColumnIndexOrThrow("_id"));
+                Intent intent = new Intent(getActivity(), DetailActivity.class).setData(SneakerProvider.Sneakers.withId(sneakerid));
 
                 startActivity(intent);
             }
