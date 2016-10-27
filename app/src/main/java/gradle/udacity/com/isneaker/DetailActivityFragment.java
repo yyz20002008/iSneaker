@@ -74,7 +74,7 @@ public class DetailActivityFragment extends Fragment {
                 // a call to the onLoadFinished() method takes place.
                 @Override
                 public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-                    cursor.moveToNext();
+                    cursor.moveToFirst();
                     mSneakerName.setText(cursor.getString(cursor.getColumnIndexOrThrow("name")));
                     mReleaseDate.setText(cursor.getString(cursor.getColumnIndexOrThrow("release_date")));
 //                    mReleaseTime.setText(cursor.getString(cursor.getColumnIndex(SneakerDBColumns.RELEASE_TIME)));
