@@ -74,9 +74,9 @@ public class DetailActivityFragment extends Fragment {
                 // a call to the onLoadFinished() method takes place.
                 @Override
                 public void onLoadFinished(Loader<Cursor> loader, Cursor cursor) {
-                    // The swapCursor() method assigns the new Cursor to the adapter
+                    cursor.moveToNext();
                     mSneakerName.setText(cursor.getString(cursor.getColumnIndexOrThrow("name")));
-//                    mReleaseDate.setText(cursor.getString(cursor.getColumnIndex(SneakerDBColumns.RELEASE_DATE)));
+                    mReleaseDate.setText(cursor.getString(cursor.getColumnIndexOrThrow("release_date")));
 //                    mReleaseTime.setText(cursor.getString(cursor.getColumnIndex(SneakerDBColumns.RELEASE_TIME)));
 //                    mReleaseStore.setText(cursor.getString(cursor.getColumnIndex(SneakerDBColumns.ONLINE_STORE_LINK)));
 //                    int image = cursor.getInt(cursor.getColumnIndex(SneakerDBColumns.IMAGE_URL));
@@ -110,7 +110,7 @@ public class DetailActivityFragment extends Fragment {
 
         mSneakerName=(TextView) rootView.findViewById(R.id.text_sneaker_name);
         mImageView= (ImageView) rootView.findViewById(R.id.sneaker_poster);
-        mReleaseDate=(TextView) rootView.findViewById(R.id.label_release_date);
+        mReleaseDate=(TextView) rootView.findViewById(R.id.text_release_date);
         mReleaseTime=(TextView) rootView.findViewById(R.id.text_release_time);
         mReleaseStore=(TextView) rootView.findViewById(R.id.text_release_store);
 
