@@ -40,10 +40,10 @@ public class SneakerProvider {
         public static final Uri CONTENT_URI = buildUri(Path.SNEAKERS);
 
         @InexactContentUri(
-                name = "SNEAKER_NAME",
+                name = "SNEAKER_ID",
                 path = Path.SNEAKERS + "/#",
                 type = "vnd.android.cursor.item/sneaker",
-                whereColumn = SneakerDBColumns.NAME,
+                whereColumn = SneakerDBColumns._ID,
                 pathSegment = 1
         )
 

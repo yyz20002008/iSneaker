@@ -160,9 +160,10 @@ public class MainActivityFragment extends Fragment {
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
-                Toast.makeText(getActivity(), "" + position,
+                Toast.makeText(getActivity(), "" + mCursor.getInt(mCursor.getColumnIndexOrThrow("_id")),
                         Toast.LENGTH_SHORT).show();
 
+               // int sneakerid=mCursor.getInt(mCursor.getColumnIndexOrThrow("_id"));
                 Intent intent = new Intent(getActivity(), DetailActivity.class).setData(SneakerProvider.Sneakers.CONTENT_URI);
 
                 startActivity(intent);
