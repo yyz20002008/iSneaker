@@ -52,20 +52,22 @@ public class DetailActivityFragment extends Fragment {
                 @Override
                 public Loader<Cursor> onCreateLoader(int id, Bundle args) {
                     Log.v(LOG_TAG, "In onCreateLoader");
-                    if (args != null) {
-                        mUri = args.getParcelable(DetailActivityFragment.DETAIL_URI);
+
+
+                    if(null!=mUri) {
+                        // Construct the loader
+                        CursorLoader cursorLoader = new CursorLoader(getActivity(),
+                                mUri, // URI
+                                projectionFields, // projection fields
+                                null, // the selection criteria
+                                null, // the selection args
+                                SneakerDBColumns.RELEASE_DATE // the sort order
+
+                        );
+                        return cursorLoader;
                     }
-                    //Intent intent = getActivity().getIntent();
-                    // Construct the loader
-                    CursorLoader cursorLoader = new CursorLoader(getActivity(),
-                            mUri, // URI
-                            projectionFields, // projection fields
-                            null, // the selection criteria
-                            null, // the selection args
-                            SneakerDBColumns.RELEASE_DATE // the sort order
-                    );
                     // Return the loader for use
-                    return cursorLoader;
+                    return null;
                 }
 
                 // When the system finishes retrieving the Cursor through the CursorLoader,
@@ -98,6 +100,11 @@ public class DetailActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Bundle args = getArguments();
+        if (args != null) {
+            mUri = args.getParcelable(DetailActivityFragment.DETAIL_URI);
+        }
 
         rootView = inflater.inflate(R.layout.fragment_detail, container, false);
 

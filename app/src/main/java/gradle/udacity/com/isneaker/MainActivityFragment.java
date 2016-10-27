@@ -163,9 +163,7 @@ public class MainActivityFragment extends Fragment {
                 Toast.makeText(getActivity(), "" + position,
                         Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getActivity(), DetailActivity.class);
-                Bundle args = new Bundle();
-                args.putParcelable(DetailActivityFragment.DETAIL_URI, SneakerProvider.Sneakers.CONTENT_URI);
+                Intent intent = new Intent(getActivity(), DetailActivity.class).setData(SneakerProvider.Sneakers.CONTENT_URI);
 
                 startActivity(intent);
             }
