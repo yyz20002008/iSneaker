@@ -57,7 +57,7 @@ public class ImageAdapter extends CursorAdapter implements StickyGridHeadersSimp
             imageView = (ImageView) convertView.findViewById(R.id.image);
         }
 
-        int image = mCursor.getInt(cursor.getColumnIndexOrThrow("image_url"));
+        int image = cursor.getInt(cursor.getColumnIndexOrThrow("image_url"));
         //add image to view
         // Populate fields with extracted properties
         Picasso.with(mContext).load(image).into(imageView);//Picasso API
@@ -103,12 +103,12 @@ public class ImageAdapter extends CursorAdapter implements StickyGridHeadersSimp
     class ViewHolder {
         TextView text;
     }
-    // references to our images
-    private Integer[] mThumbIds = {
-            R.drawable.aj1sb,
-            R.drawable.aj12ovo, R.drawable.aj12wool,
-            R.drawable.aj31orange, R.drawable.aj4premium
-    };
+//    // references to our images
+//    private Integer[] mThumbIds = {
+//            R.drawable.aj1sb,
+//            R.drawable.aj12ovo, R.drawable.aj12wool,
+//            R.drawable.aj31orange, R.drawable.aj4premium
+//    };
 }
 
 

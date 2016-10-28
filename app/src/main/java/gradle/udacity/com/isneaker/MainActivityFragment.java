@@ -45,16 +45,9 @@ public class MainActivityFragment extends Fragment {
     };
 
     private void insert(){
-        // Defines a new Uri object that receives the result of the insertion
-
 
         // Defines an object to contain the new values to insert
         ContentValues mNewValues = new ContentValues();
-
-                    /*
-                     * Sets the values of each column and inserts the word. The arguments to the "put"
-                     * method are "column name" and "value"
-                     */
 
         //1. Insert Data
 
@@ -83,6 +76,46 @@ public class MainActivityFragment extends Fragment {
                 SneakerProvider.Sneakers.CONTENT_URI,   // content URI
                 mNewValues                          // the values to insert
         );
+
+        mNewValues = new ContentValues();
+        mNewValues.put(SneakerDBColumns.MODEL,"888888-3");
+        mNewValues.put(SneakerDBColumns.NAME, "Air_Jordan_12_Wool");
+        mNewValues.put(SneakerDBColumns.RELEASE_DATE, "10/23/2016");
+        mNewValues.put(SneakerDBColumns.RELEASE_TIME, "10:00AM");
+        mNewValues.put(SneakerDBColumns.IMAGE_URL, mThumbIds[2]);
+        mNewValues.put(SneakerDBColumns.ONLINE_STORE_LINK, "www.FOOTLOCKER.com");
+
+        mContext.getContentResolver().insert(
+                SneakerProvider.Sneakers.CONTENT_URI,   // content URI
+                mNewValues                          // the values to insert
+        );
+
+        mNewValues = new ContentValues();
+        mNewValues.put(SneakerDBColumns.MODEL,"888888-4");
+        mNewValues.put(SneakerDBColumns.NAME, "Air_Jordan_31_Orange");
+        mNewValues.put(SneakerDBColumns.RELEASE_DATE, "10/23/2016");
+        mNewValues.put(SneakerDBColumns.RELEASE_TIME, "10:00AM");
+        mNewValues.put(SneakerDBColumns.IMAGE_URL, mThumbIds[3]);
+        mNewValues.put(SneakerDBColumns.ONLINE_STORE_LINK, "www.FOOTLOCKER.com");
+
+        mContext.getContentResolver().insert(
+                SneakerProvider.Sneakers.CONTENT_URI,   // content URI
+                mNewValues                          // the values to insert
+        );
+
+        mNewValues = new ContentValues();
+        mNewValues.put(SneakerDBColumns.MODEL,"888888-5");
+        mNewValues.put(SneakerDBColumns.NAME, "Air_Jordan_4_Premium");
+        mNewValues.put(SneakerDBColumns.RELEASE_DATE, "10/15/2016");
+        mNewValues.put(SneakerDBColumns.RELEASE_TIME, "10:00AM");
+        mNewValues.put(SneakerDBColumns.IMAGE_URL, mThumbIds[4]);
+        mNewValues.put(SneakerDBColumns.ONLINE_STORE_LINK, "www.Finishline.com");
+
+        mContext.getContentResolver().insert(
+                SneakerProvider.Sneakers.CONTENT_URI,   // content URI
+                mNewValues                          // the values to insert
+        );
+
 
 
 
