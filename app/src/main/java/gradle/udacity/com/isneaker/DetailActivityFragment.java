@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import gradle.udacity.com.isneaker.data.SneakerDBColumns;
 
 /**
@@ -53,7 +55,6 @@ public class DetailActivityFragment extends Fragment {
                 public Loader<Cursor> onCreateLoader(int id, Bundle args) {
                     Log.v(LOG_TAG, "In onCreateLoader");
 
-
                     if(null!=mUri) {
                         // Construct the loader
                         CursorLoader cursorLoader = new CursorLoader(getActivity(),
@@ -66,7 +67,7 @@ public class DetailActivityFragment extends Fragment {
                         );
                         return cursorLoader;
                     }
-                    // Return the loader for use
+
                     return null;
                 }
 
@@ -79,10 +80,9 @@ public class DetailActivityFragment extends Fragment {
                     mReleaseDate.setText(cursor.getString(cursor.getColumnIndexOrThrow("release_date")));
 //                    mReleaseTime.setText(cursor.getString(cursor.getColumnIndex(SneakerDBColumns.RELEASE_TIME)));
 //                    mReleaseStore.setText(cursor.getString(cursor.getColumnIndex(SneakerDBColumns.ONLINE_STORE_LINK)));
-//                    int image = cursor.getInt(cursor.getColumnIndex(SneakerDBColumns.IMAGE_URL));
-//                    //add image to view
-//                    // Populate fields with extracted properties
-//                    Picasso.with(mContext).load(image).into(mImageView);//Picasso API
+                    int image = cursor.getInt(cursor.getColumnIndex(SneakerDBColumns.IMAGE_URL));
+                    //add image to view
+                    Picasso.with(mContext).load(image).into(mImageView);//Picasso API
 
                 }
 

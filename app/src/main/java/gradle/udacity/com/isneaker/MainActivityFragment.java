@@ -84,17 +84,6 @@ public class MainActivityFragment extends Fragment {
                 mNewValues                          // the values to insert
         );
 
-        // Define the columns to retrieve
-        String[] projectionFields = new String[] {SneakerDBColumns._ID,
-                SneakerDBColumns.IMAGE_URL,SneakerDBColumns.RELEASE_DATE};
-        //2.Retrieve Data
-        mCursor=getActivity().getContentResolver().query(
-                SneakerProvider.Sneakers.CONTENT_URI,
-                projectionFields, // projection fields
-                null, // the selection criteria
-                null, // the selection args
-                SneakerDBColumns.RELEASE_DATE // the sort order
-        );
 
 
     }
@@ -149,7 +138,18 @@ public class MainActivityFragment extends Fragment {
         // Initialize the loader with a special ID and the defined callbacks from above
 
         mContext=getActivity();
-        insert();
+        //insert();
+        // Define the columns to retrieve
+        String[] projectionFields = new String[] {SneakerDBColumns._ID,
+                SneakerDBColumns.IMAGE_URL,SneakerDBColumns.RELEASE_DATE};
+        //2.Retrieve Data
+        mCursor=getActivity().getContentResolver().query(
+                SneakerProvider.Sneakers.CONTENT_URI,
+                projectionFields, // projection fields
+                null, // the selection criteria
+                null, // the selection args
+                SneakerDBColumns.RELEASE_DATE // the sort order
+        );
 
        // StickyListHeadersListView stickyList = (StickyListHeadersListView) rootView.findViewById(R.id.list);
 
@@ -160,6 +160,8 @@ public class MainActivityFragment extends Fragment {
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View v,
                                     int position, long id) {
+
+                mCursor.moveToPosition(position);
                 Toast.makeText(getActivity(), "" + mCursor.getInt(mCursor.getColumnIndexOrThrow("_id")),
                         Toast.LENGTH_SHORT).show();
 
