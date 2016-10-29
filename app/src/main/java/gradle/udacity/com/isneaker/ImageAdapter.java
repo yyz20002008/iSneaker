@@ -52,7 +52,7 @@ public class ImageAdapter extends CursorAdapter implements StickyGridHeadersSimp
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(mWidth, mHeight));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            imageView.setPadding(8, 8, 8, 8);
+            imageView.setPadding(5, 5, 5, 5);
         } else {
             imageView = (ImageView) convertView.findViewById(R.id.image);
         }
@@ -74,7 +74,7 @@ public class ImageAdapter extends CursorAdapter implements StickyGridHeadersSimp
         if (convertView == null) {
             holder = new HeaderViewHolder();
             convertView = inflater.inflate(R.layout.header, parent, false);
-            holder.text = (TextView) convertView.findViewById(R.id.text1);
+            holder.text = (TextView) convertView.findViewById(R.id.head);
             convertView.setTag(holder);
         } else {
             holder = (HeaderViewHolder) convertView.getTag();
