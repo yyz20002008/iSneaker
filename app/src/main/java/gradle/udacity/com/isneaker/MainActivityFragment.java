@@ -41,7 +41,8 @@ public class MainActivityFragment extends Fragment {
     private Integer[] mThumbIds = {
             R.drawable.aj1sb,
             R.drawable.aj12ovo, R.drawable.aj12wool,
-            R.drawable.aj31orange, R.drawable.aj4premium
+            R.drawable.aj31orange, R.drawable.aj1blacktoe
+            , R.drawable.aj4premium1
     };
 
     private void insert(){
@@ -105,7 +106,7 @@ public class MainActivityFragment extends Fragment {
 
         mNewValues = new ContentValues();
         mNewValues.put(SneakerDBColumns.MODEL,"888888-5");
-        mNewValues.put(SneakerDBColumns.NAME, "Air_Jordan_4_Premium");
+        mNewValues.put(SneakerDBColumns.NAME, "Air_Jordan_1_Black_Toe");
         mNewValues.put(SneakerDBColumns.RELEASE_DATE, "10/15/2016");
         mNewValues.put(SneakerDBColumns.RELEASE_TIME, "10:00AM");
         mNewValues.put(SneakerDBColumns.IMAGE_URL, mThumbIds[4]);
@@ -116,6 +117,18 @@ public class MainActivityFragment extends Fragment {
                 mNewValues                          // the values to insert
         );
 
+        mNewValues = new ContentValues();
+        mNewValues.put(SneakerDBColumns.MODEL,"888888-6");
+        mNewValues.put(SneakerDBColumns.NAME, "Air_Jordan_4_Premium_Wheat");
+        mNewValues.put(SneakerDBColumns.RELEASE_DATE, "10/29/2016");
+        mNewValues.put(SneakerDBColumns.RELEASE_TIME, "10:00AM");
+        mNewValues.put(SneakerDBColumns.IMAGE_URL, mThumbIds[5]);
+        mNewValues.put(SneakerDBColumns.ONLINE_STORE_LINK, "www.JimmyJazz.com");
+
+        mContext.getContentResolver().insert(
+                SneakerProvider.Sneakers.CONTENT_URI,   // content URI
+                mNewValues                          // the values to insert
+        );
 
 
 
