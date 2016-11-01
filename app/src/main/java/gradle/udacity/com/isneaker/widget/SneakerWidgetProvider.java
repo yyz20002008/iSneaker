@@ -34,8 +34,8 @@ public class SneakerWidgetProvider extends AppWidgetProvider {
             // This adapter connects
             // to a RemoteViewsService  through the specified intent.
             // This is how you populate the data.
-            rv.setRemoteAdapter(appWidgetIds[i], R.id.list, intent);
-
+            rv.setRemoteAdapter(appWidgetIds[i], R.id.widget_list, intent);
+            System.out.println("Widget!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             // The empty view is displayed when the collection has no items.
             // It should be in the same layout used to instantiate the RemoteViews
             // object above.
