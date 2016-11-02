@@ -12,4 +12,6 @@
     <string name="Main_banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="Detail_banner_ad_unit_id">ca-app-pub-3940256099942544/6300978112</string>
 
+    <string name="sneaker_list_item">List_String</string>
+
 </resources>
