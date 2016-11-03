@@ -9,7 +9,9 @@ import android.net.Uri;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
+import gradle.udacity.com.isneaker.DetailActivity;
 import gradle.udacity.com.isneaker.R;
+import gradle.udacity.com.isneaker.data.SneakerProvider;
 
 /**
  * Created by James Yang on 10/29/2016.
@@ -21,8 +23,9 @@ public class SneakerWidgetProvider extends AppWidgetProvider {
     @Override
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(ACTION_TOAST)) {
-            String item = intent.getExtras().getString(EXTRA_STRING);
+            int item = intent.getExtras().getInt(EXTRA_STRING);
             Toast.makeText(context, item, Toast.LENGTH_LONG).show();
+            intent = new Intent(context, DetailActivity.class).setData(SneakerProvider.Sneakers.withId(item));
         }
         super.onReceive(context, intent);
     }

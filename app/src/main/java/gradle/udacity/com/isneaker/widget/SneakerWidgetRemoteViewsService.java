@@ -66,8 +66,8 @@ class SneakerWidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
         fillInIntent.setAction(SneakerWidgetProvider.ACTION_TOAST);
         final Bundle bundle = new Bundle();
 
-        bundle.putString(SneakerWidgetProvider.EXTRA_STRING,
-                mCursor.getString(mCursor.getColumnIndexOrThrow("name")));
+        bundle.putInt(SneakerWidgetProvider.EXTRA_STRING,
+                mCursor.getInt(mCursor.getColumnIndexOrThrow("_id")));
         fillInIntent.putExtras(bundle);
         mView.setOnClickFillInIntent(R.id.text_item, fillInIntent);
         return mView;
@@ -95,6 +95,13 @@ class SneakerWidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
     public void onCreate() {
 
         initData();
+        mCursor=mContext.getContentResolver().query(
+                SneakerProvider.Sneakers.CONTENT_URI,
+                projectionFields, // projection fields
+                null, // the selection criteria
+                null, // the selection args
+                SneakerDBColumns.RELEASE_DATE // the sort order
+        );
 
 
     }
@@ -110,13 +117,7 @@ class SneakerWidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
             mCollections.add("ListView item " + i);
 
         }
-        mCursor=mContext.getContentResolver().query(
-                SneakerProvider.Sneakers.CONTENT_URI,
-                projectionFields, // projection fields
-                null, // the selection criteria
-                null, // the selection args
-                SneakerDBColumns.RELEASE_DATE // the sort order
-        );
+
     }
 
     @Override
