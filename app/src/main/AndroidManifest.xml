@@ -46,7 +46,7 @@
                 android:resource="@xml/sneaker_widget_infor" />
         </receiver>
         <service
-            android:name=".widget.DetailWidgetRemoteViewsService"
+            android:name=".widget.SneakerWidgetRemoteViewsService"
             android:enabled="@bool/widget_detail_enabled"
             android:exported="false"
             android:permission="android.permission.BIND_REMOTEVIEWS" />

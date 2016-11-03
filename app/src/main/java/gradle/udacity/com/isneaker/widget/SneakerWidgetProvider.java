@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
-import gradle.udacity.com.isneaker.MainActivity;
 import gradle.udacity.com.isneaker.R;
 
 /**
@@ -33,11 +32,11 @@ public class SneakerWidgetProvider extends AppWidgetProvider {
         final int count = appWidgetIds.length;
 
         // update each of the app widgets with the remote adapter
-        for (int i = 0; i < appWidgetIds.length; ++i) {
+        for (int i = 0; i < count; ++i) {
 
             // Set up the intent that starts the StackViewService, which will
             // provide the views for this collection.
-            Intent intent = new Intent(context, MainActivity.class);
+            Intent intent = new Intent(context, SneakerWidgetRemoteViewsService.class);
             // Add the app widget ID to the intent extras.
             intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i]);
             intent.setData(Uri.parse(intent.toUri(Intent.URI_INTENT_SCHEME)));

@@ -52,9 +52,8 @@ class SneakerWidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
 
     @Override
     public RemoteViews getViewAt(int position) {
-        RemoteViews mView = new RemoteViews(mContext.getPackageName(), R.layout.sneaker_widget);
+        RemoteViews mView = new RemoteViews(mContext.getPackageName(), R.layout.sneaker_widget_item);
         mView.setTextViewText(R.id.text_item, mCollections.get(position).toString());
-
         mView.setTextColor(R.id.text_item, Color.BLACK);
 
         final Intent fillInIntent = new Intent();
