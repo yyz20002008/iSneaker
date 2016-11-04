@@ -22,7 +22,7 @@
             android:id="@+id/detail_linearlayout">
 
             <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/poster_width"
                 android:layout_height="@dimen/poster_height"
                 android:paddingLeft="15dp"
                 android:id="@+id/sneaker_poster"
