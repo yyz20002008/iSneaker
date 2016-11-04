@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
 
@@ -63,12 +62,10 @@ class SneakerWidgetRemoteViewsFactory implements RemoteViewsService.RemoteViewsF
         mView.setTextColor(R.id.text_item, Color.BLACK);
 
         final Intent fillInIntent = new Intent();
-        fillInIntent.setAction(SneakerWidgetProvider.ACTION_TOAST);
-        final Bundle bundle = new Bundle();
+       // fillInIntent.setAction(SneakerWidgetProvider.ACTION_TOAST);
 
-        bundle.putInt(SneakerWidgetProvider.EXTRA_STRING,
-                mCursor.getInt(mCursor.getColumnIndexOrThrow("_id")));
-        fillInIntent.putExtras(bundle);
+        int sneakerid=mCursor.getInt(mCursor.getColumnIndexOrThrow("_id"));
+        fillInIntent.setData(SneakerProvider.Sneakers.withId(sneakerid));
         mView.setOnClickFillInIntent(R.id.text_item, fillInIntent);
         return mView;
     }
