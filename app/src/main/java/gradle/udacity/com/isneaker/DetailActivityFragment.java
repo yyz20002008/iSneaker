@@ -78,8 +78,8 @@ public class DetailActivityFragment extends Fragment {
                     cursor.moveToFirst();
                     mSneakerName.setText(cursor.getString(cursor.getColumnIndexOrThrow("name")));
                     mReleaseDate.setText(cursor.getString(cursor.getColumnIndexOrThrow("release_date")));
-//                    mReleaseTime.setText(cursor.getString(cursor.getColumnIndex(SneakerDBColumns.RELEASE_TIME)));
-//                    mReleaseStore.setText(cursor.getString(cursor.getColumnIndex(SneakerDBColumns.ONLINE_STORE_LINK)));
+                    mReleaseTime.setText(cursor.getString(cursor.getColumnIndexOrThrow("release_time")));
+                    mReleaseStore.setText(cursor.getString(cursor.getColumnIndexOrThrow("online_store_link")));
                     int image = cursor.getInt(cursor.getColumnIndex(SneakerDBColumns.IMAGE_URL));
                     //add image to view
                     Picasso.with(mContext).load(image).into(mImageView);//Picasso API

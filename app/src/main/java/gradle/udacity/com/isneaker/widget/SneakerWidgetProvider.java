@@ -60,7 +60,7 @@ public class SneakerWidgetProvider extends AppWidgetProvider {
             final Intent onItemClick = new Intent(context, DetailActivity.class);
 
             final PendingIntent onClickPendingIntent = PendingIntent
-                    .getActivity(context, 0, onItemClick,   PendingIntent.FLAG_UPDATE_CURRENT);
+                    .getActivity(context, 0, onItemClick,   0);
            rv.setPendingIntentTemplate(R.id.widget_list,
                     onClickPendingIntent);
             appWidgetManager.updateAppWidget(appWidgetIds[i], rv);

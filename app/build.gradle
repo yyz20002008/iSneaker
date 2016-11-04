@@ -32,6 +32,7 @@ dependencies {
     apt 'net.simonvt.schematic:schematic-compiler:0.6.7'
     compile 'net.simonvt.schematic:schematic:0.6.7'
     compile 'com.google.firebase:firebase-ads:9.8.0'
+    compile 'com.google.android.gms:play-services-analytics:9.8.0'
 
 
 
