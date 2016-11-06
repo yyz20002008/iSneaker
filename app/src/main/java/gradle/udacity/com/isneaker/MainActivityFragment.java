@@ -184,7 +184,7 @@ public class MainActivityFragment extends Fragment {
         // Initialize the loader with a special ID and the defined callbacks from above
 
         mContext=getActivity();
-        //insert();
+        insert();
         // Define the columns to retrieve
         String[] projectionFields = new String[] {SneakerDBColumns._ID,
                 SneakerDBColumns.IMAGE_URL,SneakerDBColumns.RELEASE_DATE};
