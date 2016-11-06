@@ -15,10 +15,10 @@ keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 android {
     signingConfigs {
         config {
-            keyAlias 'isneaker_key'
-            keyPassword 'sneakerhead2641'
-            storeFile file('/isneaker.jks')
-            storePassword 'isneaker2641'
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
         }
     }
     compileSdkVersion 23
